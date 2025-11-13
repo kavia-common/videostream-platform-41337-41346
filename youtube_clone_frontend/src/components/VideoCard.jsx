@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Avatar from "./common/Avatar";
 
 /**
@@ -14,6 +15,9 @@ export default function VideoCard({
   stats = { views: "", publishedAt: "" },
   description = "",
 }) {
+  const watchTo = `/watch/${id || ""}`;
+  const channelTo = `/channel/${encodeURIComponent(channel?.name || "")}`;
+
   return (
     <article
       className="video-card"
@@ -23,8 +27,8 @@ export default function VideoCard({
         paddingBlock: 8,
       }}
     >
-      <a
-        href={`/watch/${id || ""}`}
+      <Link
+        to={watchTo}
         style={{ display: "block", position: "relative", borderRadius: 12, overflow: "hidden", background: "var(--bg-elev-0)" }}
         aria-label={`Watch ${title}`}
       >
@@ -60,11 +64,11 @@ export default function VideoCard({
             {duration}
           </span>
         ) : null}
-      </a>
+      </Link>
 
       <div style={{ minWidth: 0, flex: 1 }}>
-        <a
-          href={`/watch/${id || ""}`}
+        <Link
+          to={watchTo}
           style={{
             color: "var(--text-primary)",
             fontSize: 18,
@@ -76,12 +80,12 @@ export default function VideoCard({
           <span style={{ display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
             {title}
           </span>
-        </a>
+        </Link>
 
         <div style={{ height: 6 }} />
 
-        <a
-          href={`/channel/${channel?.name || ""}`}
+        <Link
+          to={channelTo}
           style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "var(--text-secondary)" }}
         >
           <Avatar src={channel?.avatarUrl} name={channel?.name} size={24} alt={`${channel?.name} avatar`} />
@@ -96,7 +100,7 @@ export default function VideoCard({
               ✔︎
             </span>
           ) : null}
-        </a>
+        </Link>
 
         <div style={{ height: 6 }} />
 

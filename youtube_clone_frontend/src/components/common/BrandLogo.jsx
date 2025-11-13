@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 /**
  * PUBLIC_INTERFACE
@@ -6,8 +7,8 @@ import React from "react";
  */
 export default function BrandLogo({ size = 24, label = "YouStream" }) {
   return (
-    <a
-      href="/"
+    <Link
+      to="/"
       aria-label="Home"
       style={{ display: "flex", alignItems: "center", gap: 8, color: "inherit", textDecoration: "none" }}
     >
@@ -22,6 +23,6 @@ export default function BrandLogo({ size = 24, label = "YouStream" }) {
         }}
       />
       <strong>{label}</strong>
-    </a>
+    </Link>
   );
 }

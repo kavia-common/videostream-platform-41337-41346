@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import HeaderAppBar from "./HeaderAppBar";
 import SidebarNav from "./SidebarNav";
 import ContentArea from "./ContentArea";
@@ -14,13 +15,13 @@ export default function AppShell({ children }) {
   const { query } = useSearchState();
   const { setQuery } = useSearchActions();
   const [, setQp] = useQueryParam("q", "");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     const q = (query || "").trim();
     if (q) {
       setQp(q);
-      // navigate through location to keep current simple routing (no useNavigate to keep deps light)
-      window.location.href = `/search?q=${encodeURIComponent(q)}`;
+      navigate(`/search?q=${encodeURIComponent(q)}`);
     }
   };
 
