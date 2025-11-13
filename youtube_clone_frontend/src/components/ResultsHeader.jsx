@@ -1,10 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 /**
  * PUBLIC_INTERFACE
  * ResultsHeader renders the header area of the search results page, including the current query and optional filters placeholder.
+ * Accepts an optional inputRef via forwardRef to focus the input from parent (e.g., '/' shortcut).
  */
-export default function ResultsHeader({ query, onQueryChange, onSearch }) {
+const ResultsHeader = forwardRef(function ResultsHeader(
+  { query, onQueryChange, onSearch },
+  inputRef
+) {
   return (
     <section
       aria-label="Search results header"
@@ -19,6 +23,7 @@ export default function ResultsHeader({ query, onQueryChange, onSearch }) {
     >
       <div className="searchbar" style={{ maxWidth: 600, flex: 1 }}>
         <input
+          ref={inputRef}
           aria-label="Refine search"
           placeholder="Search"
           value={query}
@@ -53,4 +58,6 @@ export default function ResultsHeader({ query, onQueryChange, onSearch }) {
       </div>
     </section>
   );
-}
+});
+
+export default ResultsHeader;
