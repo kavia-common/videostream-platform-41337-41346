@@ -18,7 +18,7 @@ export default function BrandLogo({ size = 24, label = "YouStream" }) {
           width: size,
           borderRadius: 6,
           background: "var(--brand-primary)",
-          boxShadow: "0 0 0 2px rgba(37,99,235,0.15)",
+          boxShadow: "0 0 0 2px color-mix(in srgb, var(--brand-primary) 20%, transparent)",
         }}
       />
       <strong>{label}</strong>

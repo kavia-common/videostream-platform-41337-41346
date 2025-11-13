@@ -30,6 +30,7 @@ export default function SearchBar({
           aria-label="Search"
           onClick={() => onSubmit?.()}
           title="Search"
+          tabIndex={0}
         >
           🔍
         </div>

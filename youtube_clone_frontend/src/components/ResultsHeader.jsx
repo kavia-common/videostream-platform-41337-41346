@@ -25,7 +25,13 @@ export default function ResultsHeader({ query, onQueryChange, onSearch }) {
           onChange={(e) => onQueryChange?.(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && onSearch?.()}
         />
-        <div className="action" role="button" aria-label="Search" onClick={() => onSearch?.()}>
+        <div
+          className="action"
+          role="button"
+          aria-label="Search"
+          onClick={() => onSearch?.()}
+          tabIndex={0}
+        >
           🔍
         </div>
       </div>

@@ -87,7 +87,12 @@ export default function VideoCard({
           <Avatar src={channel?.avatarUrl} name={channel?.name} size={24} alt={`${channel?.name} avatar`} />
           <span style={{ fontSize: 14, fontWeight: 500 }}>{channel?.name}</span>
           {channel?.verified ? (
-            <span aria-label="Verified" title="Verified" style={{ fontSize: 14, color: "var(--text-secondary)" }}>
+            <span
+              className="badge-verified"
+              aria-label="Verified"
+              title="Verified"
+              style={{ fontSize: 14 }}
+            >
               ✔︎
             </span>
           ) : null}
