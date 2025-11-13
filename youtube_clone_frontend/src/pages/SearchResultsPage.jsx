@@ -3,6 +3,7 @@ import ResultsHeader from "../components/ResultsHeader";
 import VideoResultList from "../components/VideoResultList";
 import { useSearchActions, useSearchState } from "../state/searchSlice";
 import { useQueryParam } from "../hooks/useQueryParam";
+import { fetchSearchResults } from "../api/searchApi";
 
 /**
  * PUBLIC_INTERFACE
@@ -11,25 +12,63 @@ import { useQueryParam } from "../hooks/useQueryParam";
 export default function SearchResultsPage() {
   const [qp, setQp] = useQueryParam("q", "");
   const { query, results, isLoading } = useSearchState();
-  const { setQuery, performSearch } = useSearchActions();
+  const { setQuery, setResults, setLoading, setError } = useSearchActions();
 
-  // Sync slice state with query param on mount/param change
+  // Effect to sync with query param and perform API search (with mock fallback internally)
   useEffect(() => {
-    if (qp !== query) {
-      setQuery(qp);
-      if (qp && qp.trim()) {
-        performSearch(qp);
-      } else {
-        // if empty query, clear results
-        performSearch("");
+    let ignore = false;
+
+    async function doSearch(q) {
+      const qq = (q || "").trim();
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchSearchResults(qq);
+        if (ignore) return;
+        setResults(data.items || []);
+      } catch (e) {
+        if (ignore) return;
+        setError(e?.message || "Search failed");
+        setResults([]);
+      } finally {
+        if (!ignore) setLoading(false);
       }
     }
+
+    if (qp !== query) {
+      setQuery(qp);
+    }
+    if (qp && qp.trim()) {
+      doSearch(qp);
+    } else {
+      // clear results for empty q
+      setResults([]);
+    }
+
+    return () => {
+      ignore = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qp]);
 
-  const onSearch = () => {
+  const onSearch = async () => {
     setQp(query);
-    if (query && query.trim()) performSearch(query);
+    const q = (query || "").trim();
+    if (!q) {
+      setResults([]);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchSearchResults(q);
+      setResults(data.items || []);
+    } catch (e) {
+      setError(e?.message || "Search failed");
+      setResults([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "id": "yt-101",
+      "title": "Getting Started with YouStream UI",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-101/640/360",
+      "duration": "12:34",
+      "channel": { "name": "Kavia Tech", "avatarUrl": "https://i.pravatar.cc/150?img=11", "verified": true },
+      "stats": { "views": 123456, "publishedAt": "2024-12-20T10:00:00Z" },
+      "description": "Build a modern video platform UI from scratch using React and CSS tokens."
+    },
+    {
+      "id": "yt-102",
+      "title": "Understanding React Context for Global State",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-102/640/360",
+      "duration": "08:12",
+      "channelTitle": "Frontend Pro",
+      "statistics": { "viewCount": 98543 },
+      "snippet": { "publishedAt": "2025-01-10T12:00:00Z", "description": "Lightweight store patterns without external libs." }
+    },
+    {
+      "id": "yt-103",
+      "title": "Dark Theme Design Principles",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-103/640/360",
+      "duration": "04:59",
+      "channel": { "name": "Design Bytes", "avatarUrl": "https://i.pravatar.cc/150?img=5" },
+      "stats": { "views": 40231, "publishedAt": "2024-11-05T08:00:00Z" },
+      "description": "Contrast, elevation, and focus rings in dark UI."
+    },
+    {
+      "id": "yt-104",
+      "title": "Accessibility for Video Platforms",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-104/640/360",
+      "duration": "16:45",
+      "channelTitle": "A11y Weekly",
+      "author": { "avatar": "https://i.pravatar.cc/150?img=18" },
+      "viewCount": 75210,
+      "snippet": { "publishedAt": "2024-10-01T15:30:00Z", "description": "Keyboard navigation, landmarks, and aria labels." }
+    },
+    {
+      "id": "yt-105",
+      "title": "Build a Search Results Page Like YouTube",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-105/640/360",
+      "duration": "10:01",
+      "channel": { "name": "UI Patterns", "avatarUrl": "https://i.pravatar.cc/150?img=7", "verified": false },
+      "stats": { "views": 211045, "publishedAt": "2025-03-03T09:45:00Z" },
+      "description": "Layout, spacing, and content hierarchy techniques."
+    },
+    {
+      "id": "yt-106",
+      "title": "YouStream: Feature Flags in React",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-106/640/360",
+      "duration": "06:27",
+      "channel": { "name": "Kavia Dev", "avatarUrl": "https://i.pravatar.cc/150?img=13", "verified": true },
+      "stats": { "views": 65490, "publishedAt": "2025-02-12T10:10:00Z" },
+      "description": "Toggle experiments and ship safely."
+    },
+    {
+      "id": "yt-107",
+      "title": "Optimizing Thumbnails for Performance",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-107/640/360",
+      "duration": "09:16",
+      "channel": { "name": "Perf Lab", "avatarUrl": "https://i.pravatar.cc/150?img=21" },
+      "stats": { "views": 33120, "publishedAt": "2024-09-21T17:00:00Z" },
+      "description": "Lazy-loading and responsive images."
+    },
+    {
+      "id": "yt-108",
+      "title": "App Shell Layout with CSS Grid",
+      "thumbnailUrl": "https://picsum.photos/seed/youstream-108/640/360",
+      "duration": "07:40",
+      "channel": { "name": "CSS Daily", "avatarUrl": "https://i.pravatar.cc/150?img=9" },
+      "stats": { "views": 87654, "publishedAt": "2024-08-11T11:25:00Z" },
+      "description": "Sticky header and sidebar with scrollable content."
+    }
+  ]
+}
