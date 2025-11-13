@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import HeaderAppBar from "./HeaderAppBar";
 import SidebarNav from "./SidebarNav";
 import ContentArea from "./ContentArea";
 import "../App.css";
+import { useSearchActions, useSearchState } from "../state/searchSlice";
+import { useQueryParam } from "../hooks/useQueryParam";
 
 /**
  * PUBLIC_INTERFACE
  * AppShell renders the application chrome: header, sidebar, and content slot.
  */
 export default function AppShell({ children }) {
-  const [query, setQuery] = useState("");
+  const { query } = useSearchState();
+  const { setQuery } = useSearchActions();
+  const [, setQp] = useQueryParam("q", "");
 
   const handleSearch = () => {
-    const q = encodeURIComponent(query.trim());
+    const q = (query || "").trim();
     if (q) {
-      window.location.href = `/search?q=${q}`;
+      setQp(q);
+      // navigate through location to keep current simple routing (no useNavigate to keep deps light)
+      window.location.href = `/search?q=${encodeURIComponent(q)}`;
     }
   };
 

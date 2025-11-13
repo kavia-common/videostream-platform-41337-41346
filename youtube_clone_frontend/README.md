@@ -8,6 +8,8 @@ This project provides a minimal React template with a clean, modern UI and minim
 - **Modern UI**: Clean, responsive design with KAVIA brand styling
 - **Fast**: Minimal dependencies for quick loading times
 - **Simple**: Easy to understand and modify
+- **State Management**: Minimal global store with React Context + useReducer (no external libs)
+- **Feature Flags**: Read from `REACT_APP_FEATURE_FLAGS` env var
 
 ## Getting Started
 
@@ -27,21 +29,59 @@ Launches the test runner in interactive watch mode.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
+## Global Store
+
+- Store: `src/state/store.js` exposes:
+  - `AppProvider`, `useAppState`, `useAppDispatch`, and `actions`.
+- Search slice helpers: `src/state/searchSlice.js` provides:
+  - `useSearchState()` and `useSearchActions()` (with `performSearch` mock).
+- User convenience context: `src/state/userContext.js` provides:
+  - `useUser()` for `{ user, signIn, signOut, updateUser }`.
+
+Wrap is already integrated in `src/App.js`.
+
+## Query Param Hook
+
+- `src/hooks/useQueryParam.js` offers `[value, setValue]` for a given key using `history.replaceState`.  
+  Example:
+  ```js
+  const [q, setQ] = useQueryParam("q", "");
+  ```
+
+## Feature Flags
+
+- `src/utils/featureFlags.js` parses `REACT_APP_FEATURE_FLAGS`.
+- Supported formats:
+  - JSON: `{"newSearch":true}`
+  - CSV: `newSearch, cool=true, beta=false`
+  - Semicolon: `a=true;b=false`
+- In code:
+  ```js
+  import { isFeatureEnabled } from "./utils/featureFlags";
+  if (isFeatureEnabled("newSearch")) { /* ... */ }
+  ```
+
+### Env Variables
+Ensure these are available in `.env` (do not commit secrets):
+- REACT_APP_API_BASE
+- REACT_APP_BACKEND_URL
+- REACT_APP_FRONTEND_URL
+- REACT_APP_WS_URL
+- REACT_APP_NODE_ENV
+- REACT_APP_NEXT_TELEMETRY_DISABLED
+- REACT_APP_ENABLE_SOURCE_MAPS
+- REACT_APP_PORT
+- REACT_APP_TRUST_PROXY
+- REACT_APP_LOG_LEVEL
+- REACT_APP_HEALTHCHECK_PATH
+- REACT_APP_FEATURE_FLAGS
+- REACT_APP_EXPERIMENTS_ENABLED
+
 ## Customization
 
 ### Colors
 
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
+Main styles live in `src/theme/tokens.css` and page/component-level styles in `src/App.css`.
 
 ### Components
 
@@ -58,25 +98,19 @@ Common components include:
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Moved: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
 ### Analyzing the Bundle Size
+Moved: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### PWA
+Moved: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
 ### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Moved: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Moved: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Moved: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
