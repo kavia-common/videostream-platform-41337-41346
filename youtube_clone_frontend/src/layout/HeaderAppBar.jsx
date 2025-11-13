@@ -1,6 +1,9 @@
 import React from "react";
 import { useTheme } from "../theme";
 import "../App.css";
+import BrandLogo from "../components/common/BrandLogo";
+import IconButton from "../components/common/IconButton";
+import SearchBar from "../components/SearchBar";
 
 /**
  * PUBLIC_INTERFACE
@@ -9,49 +12,36 @@ import "../App.css";
 export default function HeaderAppBar({ query = "", onQueryChange, onSearch }) {
   const { theme, toggleTheme } = useTheme();
 
+  const navigateToSearch = () => {
+    if (typeof onSearch === "function") {
+      onSearch();
+    } else if (query && query.trim()) {
+      const q = encodeURIComponent(query.trim());
+      window.location.href = `/search?q=${q}`;
+    }
+  };
+
   return (
     <header className="app-header" role="banner">
       <div className="left">
-        <button className="icon-btn" aria-label="Menu">
-          <span className="visually-hidden">Open navigation</span>
-          ☰
-        </button>
-        <a href="/" aria-label="Home" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div style={{
-            height: 24, width: 24, borderRadius: 6, background: "var(--brand-primary)"
-          }}/>
-          <strong>YouStream</strong>
-        </a>
+        <IconButton ariaLabel="Menu" title="Menu">☰</IconButton>
+        <BrandLogo />
       </div>
 
-      <div className="center">
-        <div className="searchbar" role="search">
-          <input
-            aria-label="Search"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => onQueryChange?.(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") onSearch?.();
-            }}
-          />
-          <div className="action" role="button" aria-label="Search" onClick={() => onSearch?.()}>
-            🔍
-          </div>
-        </div>
-        <button className="icon-btn" aria-label="Voice search">
-          🎤
-        </button>
-        <span className="kbd">/</span>
-      </div>
+      <SearchBar
+        value={query}
+        onChange={onQueryChange}
+        onSubmit={navigateToSearch}
+        onVoice={() => {}}
+      />
 
       <div className="right">
-        <button className="icon-btn" aria-label="Create">＋</button>
-        <button className="icon-btn" aria-label="Notifications">🔔</button>
-        <button className="icon-btn" aria-label="Toggle theme" onClick={toggleTheme}>
+        <IconButton ariaLabel="Create" title="Create">＋</IconButton>
+        <IconButton ariaLabel="Notifications" title="Notifications">🔔</IconButton>
+        <IconButton ariaLabel="Toggle theme" title="Toggle theme" onClick={toggleTheme}>
           {theme === "dark" ? "☀️" : "🌙"}
-        </button>
-        <button className="icon-btn" aria-label="Account">👤</button>
+        </IconButton>
+        <IconButton ariaLabel="Account" title="Account">👤</IconButton>
       </div>
     </header>
   );

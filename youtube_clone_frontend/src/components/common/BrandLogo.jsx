@@ -1,0 +1,27 @@
+import React from "react";
+
+/**
+ * PUBLIC_INTERFACE
+ * BrandLogo renders the app's brand icon and label.
+ */
+export default function BrandLogo({ size = 24, label = "YouStream" }) {
+  return (
+    <a
+      href="/"
+      aria-label="Home"
+      style={{ display: "flex", alignItems: "center", gap: 8, color: "inherit", textDecoration: "none" }}
+    >
+      <div
+        aria-hidden="true"
+        style={{
+          height: size,
+          width: size,
+          borderRadius: 6,
+          background: "var(--brand-primary)",
+          boxShadow: "0 0 0 2px rgba(37,99,235,0.15)",
+        }}
+      />
+      <strong>{label}</strong>
+    </a>
+  );
+}

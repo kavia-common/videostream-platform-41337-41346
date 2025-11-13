@@ -12,8 +12,10 @@ export default function AppShell({ children }) {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
-    // In later steps, this can navigate to /search?q=...
-    // Placeholder: no-op.
+    const q = encodeURIComponent(query.trim());
+    if (q) {
+      window.location.href = `/search?q=${q}`;
+    }
   };
 
   return (
